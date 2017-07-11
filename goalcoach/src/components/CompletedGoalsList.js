@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {goalsBase} from '../firebase';
+import {compeletedGoalsBase} from '../firebase';
 import GoalItem from './GoalItem';
 
-class GoalsList extends Component{
+class CompletedGoalsList extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ class GoalsList extends Component{
     }
 
     componentDidMount(){
-        goalsBase.on('value', snap => {
+        compeletedGoalsBase.on('value', snap => {
             let goals = [];
             snap.forEach(goal => {
                 const { email, title } = goal.val();
@@ -23,18 +23,31 @@ class GoalsList extends Component{
         });
     }
 
+    clearAll(){
+        compeletedGoalsBase.set([]);
+    }
+
     render(){
         return (
             <div>
-                <h3>Goals List</h3>
+                <h3>Completed Goals List</h3>
                 {this.state.goals.map((goal)=>{
                     return (
-                        <GoalItem goal={goal} key={goal.key} />
+                        <div key={goal.key}>
+                            <span>{goal.title}</span>
+                            - <span>{goal.email}</span>
+                        </div>
                     );
                 })}
+                <button
+                    className="btn btn-small btn-primary"
+                    onClick={()=>this.clearAll()}
+                >
+                    Clear all
+                </button>
             </div>
         );
     }
 }
 
-export default GoalsList;
+export default CompletedGoalsList;

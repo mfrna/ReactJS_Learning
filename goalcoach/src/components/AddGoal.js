@@ -43,7 +43,7 @@ class AddGoal extends Component{
 }
 
 function mapStateToProps(state){
-    console.log('mapStateToProps state', state);
+    // console.log('mapStateToProps state', state);
     const {email} = state.userReducer;
     return {
         email

@@ -4,6 +4,7 @@ import '../App.css';
 import {connect} from 'react-redux';
 import AddGoal from './AddGoal';
 import GoalsList from './GoalsList';
+import CompletedGoalsList from './CompletedGoalsList'
 
 class App extends Component {
   signOut(){
@@ -15,6 +16,7 @@ class App extends Component {
         <h3>Goal Coach</h3>
         <AddGoal />
         <GoalsList />
+        <CompletedGoalsList />
         <button 
             className="btn btn-danger"
             onClick={()=>this.signOut()}

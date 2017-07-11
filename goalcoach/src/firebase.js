@@ -11,3 +11,4 @@ const config = {
 
   export const firebaseApp = firebase.initializeApp(config);
   export const goalsBase = firebase.database().ref('Goals');
+  export const compeletedGoalsBase = firebase.database().ref('CompletedGoals');
